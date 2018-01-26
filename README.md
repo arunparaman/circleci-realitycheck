@@ -8,6 +8,8 @@ A sample app that reality checks some basic features on your installation of Cir
 
 To test your installation, clone this code and add it to your CircleCI as a project.
 
+Then run #trigger.sh# inside your project directory to get an empty commit with a timestamp in the commit message. This should cause CircleCI to re-run all the jobs defined in the workflow. Don't worry about the context-based build error.
+
 If you have more ideas for things that should tested please submit a PR against the open source repository on GitHub where this project is maintained: <https://github.com/circleci/realitycheck>
 
 See the current CI status of the main repo at <https://circleci.com/gh/circleci/workflows/realitycheck>.
