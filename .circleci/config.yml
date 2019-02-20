@@ -53,8 +53,7 @@ basic_docker_build: &basic_docker_build
     echo "RUN apk add curl" >> $dockerfile
     echo "RUN curl https://npmjs.org" >> $dockerfile
     echo "RUN curl https://artifactory.nike.com" >> $dockerfile
-    echo "RUN apk add wget" >> $dockerfile
-    echo "RUN wget https://artifactory.nike.com/artifactory/eap-newrelic/newrelic-java-3.38.0.zip!/newrelic/newrelic.jar" >> $dockerfile
+    echo "RUN curl -o newrelic.jar https://artifactory.nike.com/artifactory/eap-newrelic/newrelic-java-3.38.0.zip!/newrelic/newrelic.jar" >> $dockerfile
     docker build -f $dockerfile --tag throwaway:$CIRCLE_BUILD_NUM .
     docker run --rm throwaway:$CIRCLE_BUILD_NUM 
 
