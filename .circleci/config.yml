@@ -50,6 +50,9 @@ basic_docker_build: &basic_docker_build
     echo "RUN apk add bind-tools" >> $dockerfile
     echo "RUN dig artifactory.nike.com" >> $dockerfile
     echo "RUN dig npmjs.org" >> $dockerfile
+    echo "RUN apk add curl" >> $dockerfile
+    echo "RUN curl https://npmjs.org" >> $dockerfile
+    echo "RUN curl https://artifactory.nike.com" >> $dockerfile
     docker build -f $dockerfile --tag throwaway:$CIRCLE_BUILD_NUM .
     docker run --rm throwaway:$CIRCLE_BUILD_NUM 
 
