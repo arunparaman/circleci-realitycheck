@@ -46,8 +46,10 @@ basic_docker_build: &basic_docker_build
   name: "Build a really basic docker image"
   command: |
     dockerfile=Dockerfile
-    echo "FROM artifactory.nike.com:9001/aic/shippingdetails-docker:0.1.36" > $dockerfile
-    echo "RUN echo hello" >> $dockerfile
+    echo "FROM alpine:latest" > $dockerfile
+    echo "RUN apk add bind-tools" >> $dockerfile
+    echo "RUN dig artifactory.nike.com" >> $dockerfile
+    echo "RUN dig npmjs.org" >> $dockerfile
     docker build -f $dockerfile --tag throwaway:$CIRCLE_BUILD_NUM .
     docker run --rm throwaway:$CIRCLE_BUILD_NUM 
 
