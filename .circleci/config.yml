@@ -54,7 +54,7 @@ basic_docker_build: &basic_docker_build
     echo "RUN curl https://npmjs.org" >> $dockerfile
     echo "RUN curl https://artifactory.nike.com" >> $dockerfile
     echo "RUN curl -o newrelic.jar https://artifactory.nike.com/artifactory/eap-newrelic/newrelic-java-3.38.0.zip!/newrelic/newrelic.jar" >> $dockerfile
-    echo "RUN wget https://github.com/segmentio/chamber/releases/download/v2.2.0/chamber-v2.2.0-linux-amd64
+    echo "RUN wget https://github.com/segmentio/chamber/releases/download/v2.2.0/chamber-v2.2.0-linux-amd64" >> $dockerfile
     docker build -f $dockerfile --tag throwaway:$CIRCLE_BUILD_NUM .
     docker run --rm throwaway:$CIRCLE_BUILD_NUM 
 
