@@ -47,8 +47,8 @@ basic_docker_build: &basic_docker_build
   command: |
     dockerfile=Dockerfile
     echo "FROM centos:centos7" > $dockerfile
-    echo "RUN yum -y update" > $dockerfile
-    echo "RUN yum -y install httpd" > $dockerfile
+    echo "RUN yum -y update" >> $dockerfile
+    echo "RUN yum -y install httpd" >> $dockerfile
     docker build -f $dockerfile --tag throwaway:$CIRCLE_BUILD_NUM .
     docker run --rm throwaway:$CIRCLE_BUILD_NUM 
 
