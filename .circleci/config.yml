@@ -46,14 +46,9 @@ basic_docker_build: &basic_docker_build
   name: "Build a really basic docker image"
   command: |
     dockerfile=Dockerfile
-    echo "FROM alpine:latest" > $dockerfile
-    echo "RUN apk add bind-tools" >> $dockerfile
-    echo "RUN dig artifactory.nike.com" >> $dockerfile
-    echo "RUN dig npmjs.org" >> $dockerfile
-    echo "RUN apk add curl" >> $dockerfile
-    echo "RUN curl https://npmjs.org" >> $dockerfile
-    echo "RUN curl https://artifactory.nike.com; curl -o newrelic.jar https://artifactory.nike.com/eap-newrelic/newrelic-java-3.38.0.zip" >> $dockerfile
-    echo "RUN curl -o chamber-v2 https://github.com/segmentio/chamber/releases/download/v2.2.0/chamber-v2.2.0-linux-amd64" >> $dockerfile
+    FROM centos:centos7
+    RUN yum -y update
+    RUN yum -y install httpd
     docker build -f $dockerfile --tag throwaway:$CIRCLE_BUILD_NUM .
     docker run --rm throwaway:$CIRCLE_BUILD_NUM 
 
