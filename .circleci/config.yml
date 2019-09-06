@@ -25,7 +25,7 @@ workflows:
 
 resource-job-default: &resource-job-default
   docker:
-    - image: circleci/ruby:2.4.1
+    - image: artifactory.nike.com:9003/hostdb-collector-aws:latest 
   steps:
     - run: echo $CIRCLE_JOB 
 
@@ -46,8 +46,8 @@ basic_docker_build: &basic_docker_build
   name: "Build a really basic docker image"
   command: |
     dockerfile=Dockerfile
-    echo "FROM "circleci/python:3.6 > $dockerfile
-    echo "RUN sudo pip install awscli --upgrade" >> $dockerfile
+    echo "FROM artifactory.nike.com:9003/hostdb-collector-aws:latest" > $dockerfile
+    echo "RUN hostname -a" >> $dockerfile
     docker build -f $dockerfile --tag throwaway:$CIRCLE_BUILD_NUM .
     docker run --rm throwaway:$CIRCLE_BUILD_NUM 
 
