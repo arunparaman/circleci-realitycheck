@@ -25,7 +25,7 @@ workflows:
 
 resource-job-default: &resource-job-default
   docker:
-    - image: artifactory.nike.com:9003/hostdb-collector-aws:latest 
+    - image: circleci/ruby:2.4.1 
   steps:
     - run: echo $CIRCLE_JOB 
 
@@ -46,8 +46,8 @@ basic_docker_build: &basic_docker_build
   name: "Build a really basic docker image"
   command: |
     dockerfile=Dockerfile
-    echo "FROM artifactory.nike.com:9003/hostdb-collector-aws:latest" > $dockerfile
-    echo "RUN hostname -a" >> $dockerfile
+    echo "FROM alpine:latest" > $dockerfile
+    echo "RUN echo hello" >> $dockerfile
     docker build -f $dockerfile --tag throwaway:$CIRCLE_BUILD_NUM .
     docker run --rm throwaway:$CIRCLE_BUILD_NUM 
 
