@@ -46,7 +46,7 @@ basic_docker_build: &basic_docker_build
   name: "Build a really basic docker image"
   command: |
     dockerfile=Dockerfile
-    echo "FROM artifactory.nike.com:9002/sprockets/node/node12:v0.4" > $dockerfile
+    echo "FROM alpine:latest" > $dockerfile
     echo "RUN echo hello" >> $dockerfile
     docker build -f $dockerfile --tag throwaway:$CIRCLE_BUILD_NUM .
     docker run --rm throwaway:$CIRCLE_BUILD_NUM 
